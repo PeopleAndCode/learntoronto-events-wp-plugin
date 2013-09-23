@@ -1,4 +1,5 @@
 <?php
+require_once(ABSPATH .'wp-includes/pluggable.php');
 
 class PAndCMetaboxes {
 

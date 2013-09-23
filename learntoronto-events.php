@@ -12,9 +12,22 @@ Version: 1.0
 Author URI: http://peopleandcode.com
 */
 
-include_once('custom_post_types.php');
+include_once('custom-post-types.php');
 include_once('learntoronto/learntoronto.php');
 
-add_theme_support( 'post-thumbnails' );
+$learntoronto = new LearnToronto;
+$events = $learntoronto->events();
+
+if($events){
+  foreach($events as $event) {
+    $event_query = $learntoronto->get_event($event);
+    if($event_query->have_posts()):
+      // $event_query->the_post(); // getting errors non-object...
+    else:
+      $learntoronto->create_event($event);
+    endif;
+  }  
+}
+
 
 ?>

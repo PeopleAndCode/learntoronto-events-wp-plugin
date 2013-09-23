@@ -33,7 +33,7 @@ function create_event_post_type() {
   ); 
 
   // this function registers and actually creates the custom post type
-  register_post_type('learn_toronto_event', $args);
+  register_post_type('learntoronto_event', $args);
 }
 
 function event_info(){
@@ -41,7 +41,7 @@ function event_info(){
   $values = array();
   if($meta){
     foreach($meta as $key => $value){
-      $key = str_replace("learn_toronto_event_", "" , $key);
+      $key = str_replace("learntoronto_event_", "" , $key);
       $values[$key] = $value[0];
     }
 
@@ -122,7 +122,7 @@ function query_address($values) {
   return $query_address; 
 }
 
-$pandc_metaboxes['learn_toronto_event'] = array(
+$pandc_metaboxes['learntoronto_event'] = array(
   array(
     'id' => 'pc_event_details',
     'title' => 'Event Details',
@@ -132,74 +132,74 @@ $pandc_metaboxes['learn_toronto_event'] = array(
       array(
         'name' => 'Approved',
         'desc' => 'e.g. August Ember.js Meetup',
-        'id' => 'learn_toronto_event_approved',
+        'id' => 'learntoronto_event_approved',
         'type' => 'checkbox',
         'default' => '0'
       ),
       array(
         'name' => 'Name:',
         'desc' => 'e.g. August Ember.js Meetup',
-        'id' => 'learn_toronto_event_name',
+        'id' => 'learntoronto_event_name',
         'type' => 'text',
         'default' => ''
       ),
       array(
         'name' => 'Location Name:',
         'desc' => 'e.g. People And Code',
-        'id' => 'learn_toronto_event_location_name',
+        'id' => 'learntoronto_event_location_name',
         'type' => 'text',
         'default' => ''
       ),
       array(
         'name' => 'Street Number and Name:',
         'desc' => 'e.g. 26 Soho Street',
-        'id' => 'learn_toronto_event_address1',
+        'id' => 'learntoronto_event_address1',
         'type' => 'text',
         'default' => ''
       ),
       array(
         'name' => 'Address Line 2:',
         'desc' => 'e.g. Unit 350',
-        'id' => 'learn_toronto_event_address2',
+        'id' => 'learntoronto_event_address2',
         'type' => 'text',
         'default' => ''
       ),
       array(
         'name' => 'Address Line 3:',
-        'id' => 'learn_toronto_event_address3',
+        'id' => 'learntoronto_event_address3',
         'type' => 'text',
         'default' => ''
       ),
       array(
         'name'    => 'City:',
         'desc'    => 'e.g. Toronto',
-        'id'      => 'learn_toronto_event_city',
+        'id'      => 'learntoronto_event_city',
         'type'    => 'text'
       ),
       array(
         'name'    => 'Province:',
         'desc'    => 'e.g. Ontario',
-        'id'      => 'learn_toronto_event_province',
+        'id'      => 'learntoronto_event_province',
         'type'    => 'text'
       ),
       array(
         'name' => 'Type:',
         'desc' => 'e.g. Meetup/Workshop/Social etc.',
-        'id' => 'learn_toronto_event_type',
+        'id' => 'learntoronto_event_type',
         'type' => 'text',
         'default' => 'Meetup'
       ),
       array(
         'name' => 'Event Date:',
         'desc' => 'eg. Aug 20th, 2013 @7:30pm',
-        'id' => 'learn_toronto_event_date',
+        'id' => 'learntoronto_event_date',
         'type' => 'text',
         'default' => ''
       ),
       array(
         'name' => 'Paid Event?',
         'desc' => 'Is this a paid event?',
-        'id' => 'learn_toronto_event_paid',
+        'id' => 'learntoronto_event_paid',
         'type' => 'radio',
         'options' => array(
           array(
@@ -215,7 +215,7 @@ $pandc_metaboxes['learn_toronto_event'] = array(
       array(
         'name' => 'Event URL:',
         'desc' => 'e.g. http://www.meetup.com/Mobile-Startups-TO/events/104501262/',
-        'id' => 'learn_toronto_event_url',
+        'id' => 'learntoronto_event_url',
         'type' => 'text',
         'default' => ''
       )
