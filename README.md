@@ -6,23 +6,23 @@ This plugin grabs event data from LearnToronto.org v1 api (http://learntoronto.o
 
 ````json
 {
-  events: [                       # Array of event objects
+  events: [                       // Array of event objects
     {
-      id: Integer,                # LearnToronto Event ID
-      name: String,               # Event Name
-      start_time: DateTime UTC,   # Start Time and date of event
-      url: String,                # url to event's websitem
-      description: String,        # Text containing HTML
-      updated_at: DateTimeUTC,    # Event info updated at Time UTC
-      group: String               # Name of the Group/Organization that is organizing/owns the event
-      venue: {                    # JSON object representing the Venue info/address
-        name: String,             # Name of venue
-        address_1: String,        # Address Line 1 of venue - typically the street number and name
-        address_2: String,        # Address Line 2 of venue - typically suite number or other
-        city: String,             # City of venue
-        state: String,            # Province/State of venue
-        zip: String,              # Postal/Zip Code of venue
-        country: String           # Country Name/Code of venue
+      id: Integer,                // LearnToronto Event ID
+      name: String,               // Event Name
+      start_time: DateTime UTC,   // Start Time and date of event
+      url: String,                // url to event's websitem
+      description: String,        // Text containing HTML
+      updated_at: DateTimeUTC,    // Event info updated at Time UTC
+      group: String               // Name of the Group/Organization that is organizing/owns the event
+      venue: {                    // JSON object representing the Venue info/address
+        name: String,             // Name of venue
+        address_1: String,        // Address Line 1 of venue - typically the street number and name
+        address_2: String,        // Address Line 2 of venue - typically suite number or other
+        city: String,             // City of venue
+        state: String,            // Province/State of venue
+        zip: String,              // Postal/Zip Code of venue
+        country: String           // Country Name/Code of venue
       }
     }
   ]
