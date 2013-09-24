@@ -4,7 +4,7 @@ This plugin grabs event data from LearnToronto.org v1 api (http://learntoronto.o
 
 ## LearnToronto.org API structure
 
-````json
+````js
 {
   events: [                       // Array of event objects
     {
