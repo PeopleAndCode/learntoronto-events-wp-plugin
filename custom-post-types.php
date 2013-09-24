@@ -11,6 +11,6 @@
   add_action('save_post', array($metaboxes, 'metaboxes_update'));
 
   // load custom post types
-  include_once('post-types/learntoronto-events.php');
+  include_once('post-types/learntoronto-events-posttype.php');
 
 ?>
