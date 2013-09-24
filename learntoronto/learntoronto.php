@@ -35,10 +35,19 @@ class LearnToronto {
           'post_content' => $value
         );
         wp_update_post($post_data);
-      } else {
+      }
+      elseif($key == 'venue'){
+        foreach($value as $address_key => $address_value){
+          update_post_meta($post_id, $this->prefix . "_venue_" . $address_key, $address_value);
+        }
+        $address_value = implode(", ", $value);
+        update_post_meta($post_id, $this->prefix . "_venue_full_address", $address_value);
+      } 
+      else {
         update_post_meta($post_id, $this->prefix . "_" . $key, $value);
       }
     }
+    update_post_meta($post_id, $this->prefix . "_approved", true);
   }
 
   function get_event($event) {
@@ -77,6 +86,30 @@ class LearnToronto {
       $exists = $query;
     }
     return $exists; 
+  }
+
+  function check_new_events() {
+
+    $events = $this->events();
+
+    if($events){
+      foreach($events as $event) {
+        $event_id = $event['id'];
+        query_posts("post_type=" . $this->prefix . "&meta_key=" . $this->prefix . "_id&meta_value=" . $event_id . "&posts_per_page=1");
+        if(have_posts()):
+          while(have_posts()):
+            the_post();
+            $post_id = get_the_ID();
+            $updated_at = get_post_meta($post_id, $this->prefix . '_updated_at');
+            if($event['updated_at'] != $updated_at){
+              $this->update_event($post_id, $event);
+            }
+          endwhile;
+        else:
+          $this->create_event($event);
+        endif;
+      }  
+    }
   }
 }
 

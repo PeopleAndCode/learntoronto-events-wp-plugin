@@ -15,19 +15,41 @@ Author URI: http://peopleandcode.com
 include_once('custom-post-types.php');
 include_once('learntoronto/learntoronto.php');
 
-$learntoronto = new LearnToronto;
-$events = $learntoronto->events();
+register_activation_hook( __FILE__, 'learntoronto_event_daily_activation' );
 
-if($events){
-  foreach($events as $event) {
-    $event_query = $learntoronto->get_event($event);
-    if($event_query->have_posts()):
-      // $event_query->the_post(); // getting errors non-object...
-    else:
-      $learntoronto->create_event($event);
-    endif;
-  }  
+add_action('learntoronto_event_daily_event', 'learntoronto_daily_event');
+
+function learntoronto_event_daily_activation() {
+  $learntoronto = new LearnToronto;
+  $learntoronto->check_new_events();
+  $time_zone = new DateTimeZone('America/Toronto');
+  $new_zone = new DateTimeZone('UTC');
+
+  $date = date('Y-m-d 4:00:00');
+  $date_time = new DateTime($date, $time_zone);
+  $date_time->setTimeZone($new_zone);
+  
+  $year = $date_time->format('Y');
+  $day = $date_time->format('d');
+  $month = $date_time->format('m');
+  $hour = $date_time->format('H');
+  $min = $date_time->format('i');
+  $sec = $date_time->format('s');
+
+  $time = mktime($hour, $min, $sec, $month, $day, $year);
+
+  wp_schedule_event($time, 'daily', 'learntoronto_event_daily_event');
 }
 
+function learntoronto_daily_event() {
+  $learntoronto = new LearnToronto;
+  $learntoronto->check_new_events();
+}
+
+register_deactivation_hook( __FILE__, 'learntoronto_event_daily_deactivation');
+
+function learntoronto_event_daily_deactivation() {
+  wp_clear_scheduled_hook('learntoronto_event_daily_event');
+}
 
 ?>

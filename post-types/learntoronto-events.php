@@ -137,50 +137,45 @@ $pandc_metaboxes['learntoronto_event'] = array(
         'default' => '0'
       ),
       array(
-        'name' => 'Name:',
-        'desc' => 'e.g. August Ember.js Meetup',
-        'id' => 'learntoronto_event_name',
-        'type' => 'text',
-        'default' => ''
-      ),
-      array(
         'name' => 'Location Name:',
         'desc' => 'e.g. People And Code',
-        'id' => 'learntoronto_event_location_name',
+        'id' => 'learntoronto_event_venue_name',
         'type' => 'text',
         'default' => ''
       ),
       array(
         'name' => 'Street Number and Name:',
         'desc' => 'e.g. 26 Soho Street',
-        'id' => 'learntoronto_event_address1',
+        'id' => 'learntoronto_event_venue_address_1',
         'type' => 'text',
         'default' => ''
       ),
       array(
-        'name' => 'Address Line 2:',
-        'desc' => 'e.g. Unit 350',
-        'id' => 'learntoronto_event_address2',
+        'name' => 'Address 2:',
+        'id' => 'learntoronto_event_venue_address_2',
         'type' => 'text',
         'default' => ''
       ),
       array(
-        'name' => 'Address Line 3:',
-        'id' => 'learntoronto_event_address3',
+        'name' => 'City:',
+        'desc' => 'e.g. Toronto',
+        'id' => 'learntoronto_event_venue_city',
         'type' => 'text',
         'default' => ''
       ),
       array(
-        'name'    => 'City:',
-        'desc'    => 'e.g. Toronto',
-        'id'      => 'learntoronto_event_city',
-        'type'    => 'text'
+        'name' => 'Province:',
+        'desc' => 'e.g. Ontario',
+        'id' => 'learntoronto_event_venue_state',
+        'type' => 'text',
+        'default' => ''
       ),
       array(
-        'name'    => 'Province:',
-        'desc'    => 'e.g. Ontario',
-        'id'      => 'learntoronto_event_province',
-        'type'    => 'text'
+        'name' => 'Country:',
+        'desc' => 'e.g. Canada',
+        'id' => 'learntoronto_event_venue_country',
+        'type' => 'text',
+        'default' => ''
       ),
       array(
         'name' => 'Type:',
@@ -192,7 +187,7 @@ $pandc_metaboxes['learntoronto_event'] = array(
       array(
         'name' => 'Event Date:',
         'desc' => 'eg. Aug 20th, 2013 @7:30pm',
-        'id' => 'learntoronto_event_date',
+        'id' => 'learntoronto_event_start_time',
         'type' => 'text',
         'default' => ''
       ),
