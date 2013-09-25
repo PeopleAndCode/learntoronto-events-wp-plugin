@@ -49,77 +49,13 @@ function event_info(){
       $values["paid"] = "Free";
     }
     
-    $values["formatted_address"] = formatted_address($values);
+    // $values["formatted_address"] = formatted_address($values);
 
-    $values["query_address"] = query_address($values);
+    // $values["query_address"] = query_address($values);
 
     return $values;
   }
   return false;
-}
-
-function formatted_address($values) {
-  $formatted_address = "";
-  
-  if($values["location_name"]) {
-    $formatted_address .= $values["location_name"] . "<br/>";
-  }
-
-  if($values["address1"]) {
-    $formatted_address .= $values["address1"] . "<br/>";
-  }
-
-  if($values["address2"]) {
-    $formatted_address .= $values["address2"] . "<br/>";
-  }
-
-  if($values["address3"]) {
-    $formatted_address .= $values["address3"] . "<br/>";
-  }
-
-  if(($values["city"]) && ($values["province"])) {
-    $formatted_address .= $values["city"] . ", " . $values["province"];
-
-  } else if ($values["city"]) {
-      $formatted_address .= $values["city"];
-
-  } else if ($values["province"]) {
-      $formatted_address .= $values["province"];
-  }
-
-  return $formatted_address;
-}
-
-function query_address($values) {
-  $query_address = "";
-
-  foreach($values as $key => $value) {
-    $values[$key] = str_replace(" ", "+", $value);
-  }
-
-  if($values["address1"]) {
-    $query_address .= $values["address1"];
-  }
-
-  if($values["address2"]) {
-    $query_address .= "+" . $values["address2"];
-  }
-
-  if($values["address3"]) {
-    $query_address .= "+" . $values["address3"];
-  }
-
-  if(($values["city"]) && ($values["province"])) {
-    $query_address .= "+" . $values["city"] . "+" . $values["province"];
-
-  } else if ($values["city"]) {
-      $query_address .= "+" . $values["city"];
-
-  } else if ($values["province"]) {
-      $query_address .= "+" . $values["province"];
-  }
-
-  return $query_address; 
 }
 
 $pandc_metaboxes['learntoronto_event'] = array(

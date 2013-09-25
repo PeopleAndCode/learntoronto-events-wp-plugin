@@ -40,8 +40,10 @@ class LearnToronto {
         foreach($value as $address_key => $address_value){
           update_post_meta($post_id, $this->prefix . "_venue_" . $address_key, $address_value);
         }
-        $address_value = implode(", ", $value);
-        update_post_meta($post_id, $this->prefix . "_venue_full_address", $address_value);
+        $full_address = full_formatted_address($value);
+        $api_address = map_formatted_address($value);
+        update_post_meta($post_id, $this->prefix . "_venue_full_address", $full_address);
+        update_post_meta($post_id, $this->prefix . "_venue_map_api_address", $api_address);
       } 
       else {
         update_post_meta($post_id, $this->prefix . "_" . $key, $value);
@@ -86,6 +88,32 @@ class LearnToronto {
       $exists = $query;
     }
     return $exists; 
+  }
+
+  function map_formatted_address($venue){
+    foreach ($venue as $key => $value) {
+      if($value){
+        if($key == "name"){
+          unset($venue[$key]);
+        } else {
+          $venue[$key] = str_replace("#", "", $venue[$key]);
+          $venue[$key] = str_replace(",", "", $venue[$key]);
+          $venue[$key] = str_replace(".", "", $venue[$key]);
+          $venue[$key] = str_replace(" ", "+", $venue[$key]);
+        }
+      }
+    }
+    $venue = array_filter($venue);
+    if($venue){
+      $venue = implode("+", $venue);
+    }
+    return $venue;
+  }
+
+  function full_formatted_address($venue){
+    $venue = array_filter($venue);
+    $venue = implode(", ", $venue);
+    return $venue;
   }
 
   function check_new_events() {
