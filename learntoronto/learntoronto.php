@@ -21,9 +21,7 @@ class LearnToronto {
       'post_title' => $event['name'],
       'post_type' => $this->prefix
     );  
-
     $post_id = wp_insert_post( $post, $wp_error);
-
     $this->update_event($post_id, $event);  
   }
 
@@ -40,8 +38,8 @@ class LearnToronto {
         foreach($value as $address_key => $address_value){
           update_post_meta($post_id, $this->prefix . "_venue_" . $address_key, $address_value);
         }
-        $full_address = full_formatted_address($value);
-        $api_address = map_formatted_address($value);
+        $full_address = $this->full_formatted_address($value);
+        $api_address = $this->map_formatted_address($value);
         update_post_meta($post_id, $this->prefix . "_venue_full_address", $full_address);
         update_post_meta($post_id, $this->prefix . "_venue_map_api_address", $api_address);
       } 
@@ -67,7 +65,6 @@ class LearnToronto {
   function event_updated($event) {
     $query = get_event($event);
     $updated = false;
-
     if($query->have_posts()){
       while($query->have_posts()){
         $query->the_post();
@@ -117,9 +114,7 @@ class LearnToronto {
   }
 
   function check_new_events() {
-
     $events = $this->events();
-
     if($events){
       foreach($events as $event) {
         $event_id = $event['id'];
